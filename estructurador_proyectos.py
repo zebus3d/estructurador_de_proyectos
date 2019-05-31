@@ -24,14 +24,14 @@ import os, sys
 
 
 # nombre del proyecto o carpeta base/raiz:
-root_proyect = "test"
+root_project = "test"
 
 
 def create_dir(dir_name):    
     if dir_name.startswith('/'):
-        path = root_proyect + dir_name
+        path = root_project + dir_name
     else:
-        path = root_proyect + "/" + dir_name
+        path = root_project + "/" + dir_name
 
     if not os.path.exists(path):
         print("creado: ", dir_name)
