@@ -19,19 +19,24 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 '''
 
+import os, sys, platform
 
-import os, sys
 
+OS = platform.system()
 
 # nombre del proyecto o carpeta base/raiz:
 root_project = "test"
 
 
-def create_dir(dir_name):    
-    if dir_name.startswith('/'):
+def create_dir(dir_name):
+    if (dir_name.startswith('/')) or (dir_name.startswith('\\')):
         path = root_project + dir_name
     else:
-        path = root_project + "/" + dir_name
+        if OS == 'Windows':
+            path = root_project + "\\" + dir_name
+        else:
+            path = root_project + "/" + dir_name
+
 
     if not os.path.exists(path):
         print("creado: ", dir_name)
