@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 '''
     Copyright (c) 2019
     
@@ -22,6 +23,7 @@
 import os, sys
 
 
+# nombre del proyecto o carpeta base/raiz:
 root_proyect = "test"
 
 
@@ -29,15 +31,18 @@ def create_dir(dir_name):
     if dir_name.startswith('/'):
         path = root_proyect + dir_name
     else:
-        path = root_proyect + "/"+ dir_name
+        path = root_proyect + "/" + dir_name
 
     if not os.path.exists(path):
         print("creado: ", dir_name)
+        # equivalente a un mkdir -p de linux:
         os.makedirs(path, exist_ok=True)
 
 
+# directorios deseados:
 target_dirs = ["dist/css", "dist/assets", "dist/js/libs", "js/libs", "levels", "sass", "resources/gui", "preloader"]
 
 
+# creando los directorios deseados:
 for dir in target_dirs:
     create_dir(dir)
