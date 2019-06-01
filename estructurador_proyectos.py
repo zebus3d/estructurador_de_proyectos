@@ -34,11 +34,20 @@ else:
     slash = "/"
 
 
-# desde un archivo externo:
+# Desde un archivo externo:
 file_json = 'templates/babylon.json'
 
 
-# manual:
+# Ver el json tal cual:
+################################
+# with open(file_json, 'r') as handle:
+#     data = json.load(handle)
+#
+# print(json.dumps(data, indent=4))
+
+
+# Accediendo de forma manual:
+################################
 # white_spaces = "  "
 # with open(file_json, 'r') as handle:
 #     data = json.load(handle)
@@ -55,14 +64,9 @@ file_json = 'templates/babylon.json'
 #                         for children_level2 in children_level1['childrens']:
 #                             print(white_spaces+white_spaces+"└─"+children_level2['path'])
 
-# ver el json tal cual:
-# print(json.dumps(data, indent=4))
 
-
-# print("\n\n\n\n")
-
-
-# con recursividad:
+# Accediendo con recursividad:
+################################
 white_spaces = " "
 level = 0
 offset = 2
@@ -71,27 +75,19 @@ def detect(level, white_spaces, data):
     if isinstance(data, dict):
         for key, value in data.items():
             if isinstance(value, list):
-                # print("bajando1")
                 level = level - offset
                 detect(level, white_spaces, value)
             else:
-                # se imprime root:
                 print(value)
     elif isinstance(data, list):
-        # print(level)
         white_spaces = white_spaces + "   "
-        # white_spaces[:-len(white_spaces)/2]
-        # white_spaces = white_spaces[0:-level]
         for item in data:
             for key, value in item.items():
                 if isinstance(value, list):
-                    # print("bajando2")
                     level = level - offset
                     detect(level, white_spaces, value)
-                    # print(level)
                 else:
                     print(white_spaces[:-2]+"└──"+value)
-        # print("subiendo1")
         level = level + offset
 
 with open(file_json, 'r') as handle:
