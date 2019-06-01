@@ -34,60 +34,60 @@ else:
     slash = "/"
 
 # directorios deseados:
-target_dirs = {
-    "type": "folder",
-    "name": "root",
-    "path": root_project,
-    "childrens": [{
-        "type": "folder",
-        "name": "sass",
-        "path": root_project+slash+"sass"
-    },{
-        "type": "folder",
-        "name": "preloader",
-        "path": root_project+slash+"preloader"
-    },{
-        "type": "folder",
-        "name": "js",
-        "path": root_project+slash+"js",
-        "childrens": [{
-                "type": "folder",
-                "name": "libs",
-                "path": root_project+slash+"js"+slash+"libs"
-        }]
-    },{
-        "type": "folder",
-        "name": "resources",
-        "path": root_project+slash+"resources",
-        "childrens": [{
-                "type": "folder",
-                "name": "libs",
-                "path": root_project+slash+"resources"+slash+"gui"
-        }]
-    },{
-        "type": "folder",
-        "name": "dist",
-        "path": root_project+slash+"dist",
-        "childrens": [{
-                "type": "folder",
-                "name": "css",
-                "path": root_project+slash+"dist"+slash+"css"
-            },{
-                "type": "folder",
-                "name": "assets",
-                "path": root_project+slash+"dist"+slash+"assets"
-            },{
-                "type": "folder",
-                "name": "js",
-                "path": root_project+slash+"dist"+slash+"js",
-                "childrens": [{
-                    "type": "folder",
-                    "name": "libs",
-                    "path": root_project+slash+"dist"+slash+"js"+slash+"libs"
-                }]
-            }]
-    }]
-}
+# target_dirs = {
+#     "type": "folder",
+#     "name": "root",
+#     "path": root_project,
+#     "childrens": [{
+#         "type": "folder",
+#         "name": "sass",
+#         "path": root_project+slash+"sass"
+#     },{
+#         "type": "folder",
+#         "name": "preloader",
+#         "path": root_project+slash+"preloader"
+#     },{
+#         "type": "folder",
+#         "name": "js",
+#         "path": root_project+slash+"js",
+#         "childrens": [{
+#                 "type": "folder",
+#                 "name": "libs",
+#                 "path": root_project+slash+"js"+slash+"libs"
+#         }]
+#     },{
+#         "type": "folder",
+#         "name": "resources",
+#         "path": root_project+slash+"resources",
+#         "childrens": [{
+#                 "type": "folder",
+#                 "name": "libs",
+#                 "path": root_project+slash+"resources"+slash+"gui"
+#         }]
+#     },{
+#         "type": "folder",
+#         "name": "dist",
+#         "path": root_project+slash+"dist",
+#         "childrens": [{
+#                 "type": "folder",
+#                 "name": "css",
+#                 "path": root_project+slash+"dist"+slash+"css"
+#             },{
+#                 "type": "folder",
+#                 "name": "assets",
+#                 "path": root_project+slash+"dist"+slash+"assets"
+#             },{
+#                 "type": "folder",
+#                 "name": "js",
+#                 "path": root_project+slash+"dist"+slash+"js",
+#                 "childrens": [{
+#                     "type": "folder",
+#                     "name": "libs",
+#                     "path": root_project+slash+"dist"+slash+"js"+slash+"libs"
+#                 }]
+#             }]
+#     }]
+# }
 
 # visualizar el json si esta embed en una variable:
 # jdump = json.dumps(target_dirs, indent=4)
