@@ -93,3 +93,6 @@ def detect(level, white_spaces, data):
 with open(file_json, 'r') as handle:
     data = json.load(handle)
     detect(level, white_spaces, data)
+
+
+print("\n\n")
