@@ -95,6 +95,7 @@ else:
 
 # desde un archivo externo:
 file_json = 'templates/babylon.json'
+white_spaces = "  "
 
 with open(file_json, 'r') as handle:
     data = json.load(handle)
@@ -105,10 +106,10 @@ with open(file_json, 'r') as handle:
             print("└─"+children_level0['name'])
             if 'childrens' in children_level0:
                 for children_level1 in children_level0['childrens']:
-                    print("  └─"+children_level1['name'])
+                    print(white_spaces+"└─"+children_level1['name'])
                     if 'childrens' in children_level1:
                         for children_level2 in children_level1['childrens']:
-                            print("    └─"+children_level2['name'])
+                            print(white_spaces+white_spaces+"└─"+children_level2['name'])
             
 
 # print(json.dumps(data, indent=4))
