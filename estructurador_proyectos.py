@@ -80,14 +80,14 @@ def detect(level, white_spaces, data):
             else:
                 print(value)
     elif isinstance(data, list):
-        white_spaces = white_spaces + "  · "
+        white_spaces = white_spaces + " ·  "
         for item in data:
             for key, value in item.items():
                 if isinstance(value, list):
                     level = level - offset
                     detect(level, white_spaces, value)
                 else:
-                    print(white_spaces[:-2]+"└──"+value)
+                    print(white_spaces[:-3]+"└──"+value)
         level = level + offset
 
 with open(file_json, 'r') as handle:
