@@ -58,7 +58,8 @@ file_json = 'templates/babylon.json'
 # ver el json tal cual:
 # print(json.dumps(data, indent=4))
 
-print("\n\n\n\n")
+
+# print("\n\n\n\n")
 
 
 # con recursividad:
