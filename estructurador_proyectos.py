@@ -101,11 +101,14 @@ with open(file_json, 'r') as handle:
     if data['name'] == 'root':
         data['path'] = root_project
         print(data['path'])
-        for children in data['childrens']:
-            print("└─"+children['name'])
-            if 'childrens' in children:
-                for ch in children['childrens']:
-                    print("  └─"+ch['name'])
+        for children_level0 in data['childrens']:
+            print("└─"+children_level0['name'])
+            if 'childrens' in children_level0:
+                for children_level1 in children_level0['childrens']:
+                    print("  └─"+children_level1['name'])
+                    if 'childrens' in children_level1:
+                        for children_level2 in children_level1['childrens']:
+                            print("    └─"+children_level2['name'])
             
 
 # print(json.dumps(data, indent=4))

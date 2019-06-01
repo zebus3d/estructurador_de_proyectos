@@ -25,7 +25,7 @@
         "path": "root_project_slash_resources",
         "childrens": [{
                 "type": "folder",
-                "name": "libs",
+                "name": "gui",
                 "path": "root_project_slash_resources_slash_gui"
         }]
     },{
@@ -39,7 +39,12 @@
             },{
                 "type": "folder",
                 "name": "assets",
-                "path": "root_project_slash_dist_slash_assets"
+                "path": "root_project_slash_dist_slash_assets",
+                "childrens": [{
+                    "type": "folder",
+                    "name": "gui",
+                    "path": "root_project_slash_dist_slash_assets_slash_gui"
+                }]
             },{
                 "type": "folder",
                 "name": "js",
