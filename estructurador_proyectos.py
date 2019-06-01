@@ -67,7 +67,7 @@ file_json = 'templates/babylon.json'
 
 # Accediendo con recursividad:
 ################################
-white_spaces = " "
+white_spaces = ""
 level = 0
 offset = 2
 
@@ -86,7 +86,7 @@ def detect(level, white_spaces, data):
                     print(value)
 
     elif isinstance(data, list):
-        white_spaces = white_spaces + " ·  "
+        white_spaces = white_spaces + "  ·  "
         for item in data:
             for key, value in item.items():
                 if isinstance(value, list):
