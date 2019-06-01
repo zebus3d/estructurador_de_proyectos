@@ -33,83 +33,56 @@ if OS == 'Windows':
 else:
     slash = "/"
 
-# directorios deseados:
-# target_dirs = {
-#     "type": "folder",
-#     "name": "root",
-#     "path": root_project,
-#     "childrens": [{
-#         "type": "folder",
-#         "name": "sass",
-#         "path": root_project+slash+"sass"
-#     },{
-#         "type": "folder",
-#         "name": "preloader",
-#         "path": root_project+slash+"preloader"
-#     },{
-#         "type": "folder",
-#         "name": "js",
-#         "path": root_project+slash+"js",
-#         "childrens": [{
-#                 "type": "folder",
-#                 "name": "libs",
-#                 "path": root_project+slash+"js"+slash+"libs"
-#         }]
-#     },{
-#         "type": "folder",
-#         "name": "resources",
-#         "path": root_project+slash+"resources",
-#         "childrens": [{
-#                 "type": "folder",
-#                 "name": "libs",
-#                 "path": root_project+slash+"resources"+slash+"gui"
-#         }]
-#     },{
-#         "type": "folder",
-#         "name": "dist",
-#         "path": root_project+slash+"dist",
-#         "childrens": [{
-#                 "type": "folder",
-#                 "name": "css",
-#                 "path": root_project+slash+"dist"+slash+"css"
-#             },{
-#                 "type": "folder",
-#                 "name": "assets",
-#                 "path": root_project+slash+"dist"+slash+"assets"
-#             },{
-#                 "type": "folder",
-#                 "name": "js",
-#                 "path": root_project+slash+"dist"+slash+"js",
-#                 "childrens": [{
-#                     "type": "folder",
-#                     "name": "libs",
-#                     "path": root_project+slash+"dist"+slash+"js"+slash+"libs"
-#                 }]
-#             }]
-#     }]
-# }
-
-# visualizar el json si esta embed en una variable:
-# jdump = json.dumps(target_dirs, indent=4)
-# print(jdump)
 
 # desde un archivo externo:
 file_json = 'templates/babylon.json'
+
+
+# manual:
+# white_spaces = "  "
+# with open(file_json, 'r') as handle:
+#     data = json.load(handle)
+
+#     if data['path'] == 'root':
+#         print(data['path'])
+#         data['path'] = root_project
+#         for children_level0 in data['childrens']:
+#             print("└─"+children_level0['path'])
+#             if 'childrens' in children_level0:
+#                 for children_level1 in children_level0['childrens']:
+#                     print(white_spaces+"└─"+children_level1['path'])
+#                     if 'childrens' in children_level1:
+#                         for children_level2 in children_level1['childrens']:
+#                             print(white_spaces+white_spaces+"└─"+children_level2['path'])
+
+# ver el json tal cual:
+# print(json.dumps(data, indent=4))
+
+print("\n\n\n\n")
+
+
+# con recursividad:
 white_spaces = "  "
+level = 0
+
+def detect(level, white_spaces, data):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if isinstance(value, list):
+                detect(level, white_spaces, value)
+            else:
+                print(value)
+    elif isinstance(data, list):
+        white_spaces = white_spaces + white_spaces[0:-level]
+        level += 1
+        for item in data:
+            for key, value in item.items():
+                if isinstance(value, list):
+                    detect(level, white_spaces, value)
+                else:
+                    print(white_spaces+"└─", value)
+
 
 with open(file_json, 'r') as handle:
     data = json.load(handle)
-    if data['name'] == 'root':
-        data['path'] = root_project
-        print(data['path'])
-        for children_level0 in data['childrens']:
-            print("└─"+children_level0['name'])
-            if 'childrens' in children_level0:
-                for children_level1 in children_level0['childrens']:
-                    print(white_spaces+"└─"+children_level1['name'])
-                    if 'childrens' in children_level1:
-                        for children_level2 in children_level1['childrens']:
-                            print(white_spaces+white_spaces+"└─"+children_level2['name'])
-            
-
-# print(json.dumps(data, indent=4))
+    detect(level, white_spaces, data)
