@@ -97,6 +97,15 @@ else:
 file_json = 'templates/babylon.json'
 
 with open(file_json, 'r') as handle:
-    parsed = json.load(handle)
+    data = json.load(handle)
+    if data['name'] == 'root':
+        data['path'] = root_project
+        print(data['path'])
+        for children in data['childrens']:
+            print("└─"+children['name'])
+            if 'childrens' in children:
+                for ch in children['childrens']:
+                    print("  └─"+ch['name'])
+            
 
-print(json.dumps(parsed, indent=4))
+# print(json.dumps(data, indent=4))
