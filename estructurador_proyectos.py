@@ -71,6 +71,8 @@ white_spaces = " "
 level = 0
 offset = 2
 
+print("Previsualizacion como quedara el template elegido:")
+
 def detect(level, white_spaces, data):
     if isinstance(data, dict):
         for key, value in data.items():
@@ -78,7 +80,11 @@ def detect(level, white_spaces, data):
                 level = level - offset
                 detect(level, white_spaces, value)
             else:
-                print(value)
+                if value == 'root':
+                    print(root_project)
+                else:
+                    print(value)
+
     elif isinstance(data, list):
         white_spaces = white_spaces + " ·  "
         for item in data:
@@ -95,4 +101,4 @@ with open(file_json, 'r') as handle:
     detect(level, white_spaces, data)
 
 
-print("\n\n")
+print("\n")
