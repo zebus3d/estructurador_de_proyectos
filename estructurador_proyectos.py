@@ -25,7 +25,7 @@ import os, sys, platform, json
 OS = platform.system()
 
 # nombre de la carpeta base/raiz (nombre del proyecto):
-root_project = "test"
+root_project = "AwesomeProject"
 
 # slash segun sistema operativo:
 if OS == 'Windows':
