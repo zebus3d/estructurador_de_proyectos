@@ -78,7 +78,7 @@ def detect(level, white_spaces, data):
     elif isinstance(data, list):
         # print(level)
         if level < 0: 
-            white_spaces += ":" + white_spaces[0:-level-1]
+            white_spaces += ":" + white_spaces[0:-level-2]
         else:
             white_spaces = white_spaces + white_spaces[0:-level]
         # white_spaces = white_spaces[0:-level]
