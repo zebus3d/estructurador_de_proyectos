@@ -21,7 +21,10 @@
         },{
             "path": "assets",
             "childrens": [{
-                "path": "gui"
+                "path": "gui",
+                "childrens": [{
+                    "path": "buttons"
+                }]
             }]
         },{
             "path": "js",

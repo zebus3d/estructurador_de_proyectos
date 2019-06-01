@@ -63,7 +63,7 @@ file_json = 'templates/babylon.json'
 
 
 # con recursividad:
-white_spaces = "  "
+white_spaces = " "
 level = 0
 
 def detect(level, white_spaces, data):
@@ -71,17 +71,25 @@ def detect(level, white_spaces, data):
         for key, value in data.items():
             if isinstance(value, list):
                 detect(level, white_spaces, value)
+                level += 1
             else:
+                # se imprime root:
                 print(value)
     elif isinstance(data, list):
-        white_spaces = white_spaces + white_spaces[0:-level]
-        level += 1
+        # print(level)
+        if level < 0: 
+            white_spaces += ":" + white_spaces[0:-level-1]
+        else:
+            white_spaces = white_spaces + white_spaces[0:-level]
+        # white_spaces = white_spaces[0:-level]
         for item in data:
             for key, value in item.items():
                 if isinstance(value, list):
                     detect(level, white_spaces, value)
+                    level += 1
                 else:
                     print(white_spaces+"└─", value)
+                    level -= 1
 
 
 with open(file_json, 'r') as handle:
