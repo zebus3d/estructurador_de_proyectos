@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os, sys, platform, json
 
 
 '''
@@ -19,35 +20,83 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import os, sys, platform
 
-
+# variables:
 OS = platform.system()
 
-# nombre del proyecto o carpeta base/raiz:
+# nombre de la carpeta base/raiz (nombre del proyecto):
 root_project = "test"
 
-
-def create_dir(dir_name):
-    if (dir_name.startswith('/')) or (dir_name.startswith('\\')):
-        path = root_project + dir_name
-    else:
-        if OS == 'Windows':
-            path = root_project + "\\" + dir_name
-        else:
-            path = root_project + "/" + dir_name
-
-
-    if not os.path.exists(path):
-        print("creado: ", dir_name)
-        # equivalente a un mkdir -p de linux:
-        os.makedirs(path, exist_ok=True)
-
+# slash segun sistema operativo:
+if OS == 'Windows':
+    slash = "\\"
+else:
+    slash = "/"
 
 # directorios deseados:
-target_dirs = ["dist/css", "dist/assets", "dist/js/libs", "js/libs", "levels", "sass", "resources/gui", "preloader"]
+target_dirs = {
+    "type": "folder",
+    "name": "root",
+    "path": root_project,
+    "childrens": [{
+        "type": "folder",
+        "name": "sass",
+        "path": root_project+slash+"sass"
+    },{
+        "type": "folder",
+        "name": "preloader",
+        "path": root_project+slash+"preloader"
+    },{
+        "type": "folder",
+        "name": "js",
+        "path": root_project+slash+"js",
+        "childrens": [{
+                "type": "folder",
+                "name": "libs",
+                "path": root_project+slash+"js"+slash+"libs"
+        }]
+    },{
+        "type": "folder",
+        "name": "resources",
+        "path": root_project+slash+"resources",
+        "childrens": [{
+                "type": "folder",
+                "name": "libs",
+                "path": root_project+slash+"resources"+slash+"gui"
+        }]
+    },{
+        "type": "folder",
+        "name": "dist",
+        "path": root_project+slash+"dist",
+        "childrens": [{
+                "type": "folder",
+                "name": "css",
+                "path": root_project+slash+"dist"+slash+"css"
+            },{
+                "type": "folder",
+                "name": "assets",
+                "path": root_project+slash+"dist"+slash+"assets"
+            },{
+                "type": "folder",
+                "name": "js",
+                "path": root_project+slash+"dist"+slash+"js",
+                "childrens": [{
+                    "type": "folder",
+                    "name": "libs",
+                    "path": root_project+slash+"dist"+slash+"js"+slash+"libs"
+                }]
+            }]
+    }]
+}
 
+# visualizar el json si esta embed en una variable:
+# jdump = json.dumps(target_dirs, indent=4)
+# print(jdump)
 
-# creando los directorios deseados:
-for dir in target_dirs:
-    create_dir(dir)
+# desde un archivo externo:
+file_json = 'templates/babylon.json'
+
+with open(file_json, 'r') as handle:
+    parsed = json.load(handle)
+
+print(json.dumps(parsed, indent=4))

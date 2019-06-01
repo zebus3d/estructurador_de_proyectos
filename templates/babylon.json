@@ -1,0 +1,54 @@
+{
+    "type": "folder",
+    "name": "root",
+    "path": "root_project",
+    "childrens": [{
+        "type": "folder",
+        "name": "sass",
+        "path": "root_project_slash_sass"
+    },{
+        "type": "folder",
+        "name": "preloader",
+        "path": "root_project_slash_preloader"
+    },{
+        "type": "folder",
+        "name": "js",
+        "path": "root_project_slash_js",
+        "childrens": [{
+                "type": "folder",
+                "name": "libs",
+                "path": "root_project_slash_js_slash_libs"
+        }]
+    },{
+        "type": "folder",
+        "name": "resources",
+        "path": "root_project_slash_resources",
+        "childrens": [{
+                "type": "folder",
+                "name": "libs",
+                "path": "root_project_slash_resources_slash_gui"
+        }]
+    },{
+        "type": "folder",
+        "name": "dist",
+        "path": "root_project_slash_dist",
+        "childrens": [{
+                "type": "folder",
+                "name": "css",
+                "path": "root_project_slash_dist_slash_css"
+            },{
+                "type": "folder",
+                "name": "assets",
+                "path": "root_project_slash_dist_slash_assets"
+            },{
+                "type": "folder",
+                "name": "js",
+                "path": "root_project_slash_dist_slash_js",
+                "childrens": [{
+                    "type": "folder",
+                    "name": "libs",
+                    "path": "root_project_slash_dist_slash_js_slash_libs"
+                }]
+            }]
+    }]
+}
