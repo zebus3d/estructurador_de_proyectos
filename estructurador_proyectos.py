@@ -80,7 +80,7 @@ def detect(level, white_spaces, data):
             else:
                 print(value)
     elif isinstance(data, list):
-        white_spaces = white_spaces + "  : "
+        white_spaces = white_spaces + "  · "
         for item in data:
             for key, value in item.items():
                 if isinstance(value, list):
