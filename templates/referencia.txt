@@ -1,0 +1,14 @@
+AwesomeProject
+ └──sass
+ └──preloader
+ └──js
+ ·   └──libs
+ └──resources
+ ·   └──gui
+ └──dist
+ ·   └──css
+ ·   └──assets
+ ·   ·   └──gui
+ ·   ·   ·   └──buttons
+ ·   └──js
+ ·   ·   └──libs

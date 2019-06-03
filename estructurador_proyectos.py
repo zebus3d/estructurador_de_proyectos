@@ -34,71 +34,45 @@ else:
     slash = "/"
 
 
+yes = {'YES', 'Yes', 'yes','y', 'ye', ''}
+no = {'NO', 'No', 'no','n'}
+
 # Desde un archivo externo:
 file_json = 'templates/babylon.json'
 
 
-# Ver el json tal cual:
-################################
-# with open(file_json, 'r') as handle:
-#     data = json.load(handle)
-#
-# print(json.dumps(data, indent=4))
+parents = []
 
 
-# Accediendo de forma manual:
-################################
-# white_spaces = "  "
-# with open(file_json, 'r') as handle:
-#     data = json.load(handle)
+def have_childrens(item):
+    hijos = len(item['children'])
+    if hijos > 0:
+        print("folder: " + item['name'], " have ", hijos, " childrens")
+        return True
+    else:
+        print("folder: " + item['name'], "not have childrens")
+        return False
 
-#     if data['path'] == 'root':
-#         print(data['path'])
-#         data['path'] = root_project
-#         for children_level0 in data['childrens']:
-#             print("└─"+children_level0['path'])
-#             if 'childrens' in children_level0:
-#                 for children_level1 in children_level0['childrens']:
-#                     print(white_spaces+"└─"+children_level1['path'])
-#                     if 'childrens' in children_level1:
-#                         for children_level2 in children_level1['childrens']:
-#                             print(white_spaces+white_spaces+"└─"+children_level2['path'])
+family = []
 
+def readTree(data):
+    if have_childrens(data):
+        pack = []
+        pack = [data['name'], [child['name'] for child in data['children']]]
+        family.append(pack)        
 
-# Accediendo con recursividad:
-################################
-white_spaces = ""
-level = 0
-offset = 2
-
-print("Previsualizacion como quedara el template elegido:")
-
-def detect(level, white_spaces, data):
-    if isinstance(data, dict):
-        for key, value in data.items():
-            if isinstance(value, list):
-                level = level - offset
-                detect(level, white_spaces, value)
-            else:
-                if value == 'root':
-                    print(root_project)
-                else:
-                    print(value)
-
-    elif isinstance(data, list):
-        white_spaces = white_spaces + "  ·  "
-        for item in data:
-            for key, value in item.items():
-                if isinstance(value, list):
-                    level = level - offset
-                    detect(level, white_spaces, value)
-                else:
-                    print(white_spaces[:-3]+"└──"+value)
-        level = level + offset
-
-with open(file_json, 'r') as handle:
-    data = json.load(handle)
-    detect(level, white_spaces, data)
+        for child in data['children']:
+            if have_childrens(child):
+                readTree(child)
+    else:
+        family.append(data['name'])
 
 
-print("\n")
+with open(file_json) as json_file:
+    json_data = json.load(json_file)
+    # print(json_data)
+    readTree(json_data)
+
+# print(family)
+for i in family:
+    print(i)
