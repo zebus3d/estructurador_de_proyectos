@@ -20,7 +20,6 @@ import os, sys, platform, json
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 # variables:
 OS = platform.system()
 
@@ -33,10 +32,8 @@ if OS == 'Windows':
 else:
     slash = "/"
 
-
 # Desde un archivo externo:
 file_json = 'templates/babylon.json'
-
 
 # root_dir
 #  └──sass
@@ -66,7 +63,6 @@ def readTree(count, data):
                     count += 1
                     readTree(count, c)
             else:
-                if len(data['children']) == 0 :
                     count += 1
                     parents.append([padre , ""])
 
@@ -75,6 +71,6 @@ with open(file_json) as json_file:
     readTree(count, data)
 
 for i in parents:
-    # obiando los directorios vacios:
+    # obviando los directorios vacios:
     if len(i[1]) > 0:
         print(i)
