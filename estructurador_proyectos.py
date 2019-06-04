@@ -44,35 +44,40 @@ file_json = 'templates/babylon.json'
 parents = []
 
 
-def have_childrens(item):
-    hijos = len(item['children'])
-    if hijos > 0:
-        print("folder: " + item['name'], " have ", hijos, " childrens")
-        return True
-    else:
-        print("folder: " + item['name'], "not have childrens")
-        return False
+# def have_childrens(item):
+#     # print(type(item))
+#     if isinstance(item, dict):
+#         hijos = len(item['children'])
+#         if hijos > 0:
+#             print("folder: " + item['name'], " have ", hijos, " childrens")
+#             return True
+#         else:
+#             print("folder: " + item['name'], "not have childrens")
+#             return False
 
-family = []
+family = {}
+# singles = []
 
-def readTree(data):
-    if have_childrens(data):
-        pack = []
-        pack = [data['name'], [child['name'] for child in data['children']]]
-        family.append(pack)        
-
-        for child in data['children']:
-            if have_childrens(child):
-                readTree(child)
-    else:
-        family.append(data['name'])
+count = 0
+def readTree(count, data):
+    if isinstance(data, dict):
+        padre = data['name']
+        if isinstance(data['children'], list) and len(data['children']) > 0 :
+            for c in data['children']:
+                count += 1
+                family[count] = { padre : c['name'] }
+                readTree(count, c)
+        else:
+            count += 1
+            family[count] = { padre : ""}
 
 
 with open(file_json) as json_file:
-    json_data = json.load(json_file)
-    # print(json_data)
-    readTree(json_data)
+    data = json.load(json_file)
+    # print(data)
+    readTree(count, data)
 
-# print(family)
-for i in family:
-    print(i)
+print(family)
+
+# for i in family:
+#     print(i)

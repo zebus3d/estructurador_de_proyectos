@@ -10,10 +10,10 @@
             "level": "1",
             "children": []
         },{
-            "name": "js",
+            "name": "js1",
             "level": "1",
             "children": [{
-                "name": "libs",
+                "name": "libs1",
                 "level": "2",
                 "children": []
             }]
@@ -36,7 +36,7 @@
                     "name": "assets",
                     "level": "2",
                     "children": [{
-                            "name": "gui",
+                            "name": "agui",
                             "level": "3",
                             "children": [{
                                 "name": "buttons",
@@ -45,10 +45,10 @@
                             }]
                         }]
                     },{
-                        "name": "js",
+                        "name": "js2",
                         "level": "2",
                         "children": [{
-                            "name": "libs",
+                            "name": "libs2",
                             "level": "3",
                             "children": []
                         }]

@@ -1,14 +1,14 @@
-AwesomeProject
+root_dir
  └──sass
  └──preloader
- └──js
- ·   └──libs
+ └──js1
+ ·   └──libs1
  └──resources
  ·   └──gui
  └──dist
  ·   └──css
  ·   └──assets
- ·   ·   └──gui
+ ·   ·   └──agui
  ·   ·   ·   └──buttons
- ·   └──js
- ·   ·   └──libs
+ ·   └──js2
+ ·   ·   └──libs2
