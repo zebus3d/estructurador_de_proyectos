@@ -52,23 +52,20 @@ file_json = 'templates/babylon.json'
 
 parents = []
 
-count = 0
-def readTree(count, data):
+def readTree(data):
     if isinstance(data, dict):
         padre = data['name']
         if isinstance(data['children'], list): 
             if len(data['children']) > 0 :
                 for c in data['children']:
                     parents.append([padre, c['name']])
-                    count += 1
-                    readTree(count, c)
+                    readTree(c)
             else:
-                    count += 1
-                    parents.append([padre , ""])
+                parents.append([padre , ""])
 
 with open(file_json) as json_file:
     data = json.load(json_file)
-    readTree(count, data)
+    readTree(data)
 
 for i in parents:
     # obviando los directorios vacios:
