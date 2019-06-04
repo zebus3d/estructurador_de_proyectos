@@ -1,55 +1,41 @@
 {
     "name": "root_dir",
-    "level": "0",
     "children": [{
             "name": "sass",
-            "level": "1",
             "children": []
         },{
             "name": "preloader",
-            "level": "1",
             "children": []
         },{
             "name": "js1",
-            "level": "1",
             "children": [{
                 "name": "libs1",
-                "level": "2",
                 "children": []
             }]
         },{
             "name": "resources",
-            "level": "1",
             "children": [{
                 "name": "gui",
-                "level": "2",
                 "children": []
             }]
         },{
             "name": "dist",
-            "level": "1",
             "children": [{
                     "name": "css",
-                    "level": "2",
                     "children": []
                     },{
                     "name": "assets",
-                    "level": "2",
                     "children": [{
                             "name": "agui",
-                            "level": "3",
                             "children": [{
                                 "name": "buttons",
-                                "level": "4",
                                 "children": []
                             }]
                         }]
                     },{
                         "name": "js2",
-                        "level": "2",
                         "children": [{
                             "name": "libs2",
-                            "level": "3",
                             "children": []
                         }]
                     }]

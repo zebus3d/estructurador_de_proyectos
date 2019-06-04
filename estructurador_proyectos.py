@@ -60,6 +60,7 @@ family = {}
 
 count = 0
 def readTree(count, data):
+    print(data)
     if isinstance(data, dict):
         padre = data['name']
         if isinstance(data['children'], list) and len(data['children']) > 0 :
@@ -77,7 +78,10 @@ with open(file_json) as json_file:
     # print(data)
     readTree(count, data)
 
-print(family)
+# print(family)
 
 # for i in family:
 #     print(i)
+
+for k, v in family.items():
+    print(k, v)
