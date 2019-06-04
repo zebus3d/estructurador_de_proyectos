@@ -75,4 +75,6 @@ with open(file_json) as json_file:
     readTree(count, data)
 
 for i in parents:
-    print(i)
+    # obiando los directorios vacios:
+    if len(i[1]) > 0:
+        print(i)
