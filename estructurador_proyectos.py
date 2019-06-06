@@ -34,6 +34,7 @@ else:
 
 # Desde un archivo externo:
 file_json = 'templates/babylon.json'
+# file_json = 'templates/babylon2.json'
 
 
 # parents = []
@@ -99,76 +100,71 @@ class Folder():
         return [child for child in self.childrens]
 
 
-# parseando:
-def procesando(data):
+
+# parseando y dibujando:
+last_childs = []
+space = ""
+def procesando(space, data):
     for key, value in data.items():
         if isinstance(value, str):
             # si value es string es un padre:
+            padre = value
             fo = Folder(value, [])
             folders.append(fo)
+
+            # print(padre, last_childs)
+            if padre not in last_childs:
+                print(space+padre)
+            else:
+                space += "· "
+            
         elif isinstance(value, list):
-            # si es un listado de hijos:
-            if fo in folders:
-                childrens = value
-                for child in childrens:
-                    # print(fo.name)
-                    fo.childrens.append(child['name'])
-                    # print(" "+"└─"+child['name'])
-                    procesando(child)
+            childrens = value
+            space += " "
+            for child in childrens:
+                last_childs.append(child['name'])
+
+                print(space+"└─"+child['name'])
+
+                fo.childrens.append(child['name'])
+                procesando(space, child)
+
+            space = ""
+
+
 
 with open(file_json) as json_file:
     data = json.load(json_file)
     # print(data)
     # readTree(data)
-    procesando(data)
+    procesando(space, data)
 
 # fin parseando
 
 # referencia babylon.json:
 # root_dir
-#  └──sass
-#  └──preloader
-#  └──js1
-#      └──libs1
-#  └──resources
-#      └──gui
-#  └──dist
-#      └──css
-#      └──assets
-#          └──agui
-#              └──buttons
-#      └──js2
-#          └──libs2
+#  └─sass
+#  └─preloader
+#  └─js1
+#  ·  └─libs1
+#  └─resources
+#  ·  └─gui
+#  └─dist
+#  ·  └─css
+#  ·  └─assets
+#  ·  ·  └─agui
+#  ·  ·  ·  └─buttons
+#  ·  └─js2
+#  ·  ·  └─libs2
 
 # referencia babylon2.json:
 # root_dir
-#   └─index.html
-#   └─css
-#   └─js
-#     └─SceneManager.js
-#     └─main.js
-#     └─sceneSubjects
-#     └─libs
-#       └─opt
-#         └─jeje
-
-
-# lectura:
-name_folders = []
-name_child_folders = []
-
-
-
-last_childs = []
-
-for obj in folders:
-    space = ""
-    target = obj.name
-
-    if obj.have_childs():
-        print(target)
-        space += " "
-        
-        childrens = obj.get_childs()
-        for child in childrens:
-            print(space+"└─"+child)
+#  └─index.html
+#  └─css
+#  └─js
+#  ·  └─SceneManager.js
+#  ·  └─main.js
+#  ·  └─sceneSubjects
+#  ·  └─libs
+#  ·  ·  └─opt
+#  ·  ·  ·  └─jeje
