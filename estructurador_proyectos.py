@@ -166,11 +166,12 @@ last_childs = []
 for i in range(len(folders)):
     target = folders[i].name
     if have_childs(target):
-        print(space+target)
+        print(space+"└─"+target)
+        space = space + "  "
         c = get_childs(target)
         # nc = get_childs(folders[i+1].name)
         for child in c:
             # if target not in last_childs:
-            print(space+"└─"+child)
-        space = space + "  "
-
+            if not have_childs(child):
+                print(space+"└─"+child)
+                space = ""
