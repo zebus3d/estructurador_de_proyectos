@@ -80,19 +80,16 @@ class Folder():
 
 # referencia babylon.json:
 # root_dir
+#  └─index.html
+#  └─css
+#  ·  └─style.css
 #  └─sass
-#  └─preloader
-#  └─js1
-#  ·  └─libs1
+#  ·  └─style.sass
+#  └─js
+#  ·  └─libs
 #  └─resources
+#  ·  └─img
 #  ·  └─gui
-#  └─dist
-#  ·  └─css
-#  ·  └─assets
-#  ·  ·  └─agui
-#  ·  ·  ·  └─buttons
-#  ·  └─js2
-#  ·  ·  └─libs2
 
 # referencia babylon2.json:
 # root_dir
