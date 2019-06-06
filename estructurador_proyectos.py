@@ -114,7 +114,23 @@ with open(file_json) as json_file:
 
 # fin parseando
 
-# referencia:
+# referencia babylon.json:
+# root_dir
+#  └──sass
+#  └──preloader
+#  └──js1
+#      └──libs1
+#  └──resources
+#      └──gui
+#  └──dist
+#      └──css
+#      └──assets
+#          └──agui
+#              └──buttons
+#      └──js2
+#          └──libs2
+
+# referencia babylon2.json:
 # root_dir
 #   └─index.html
 #   └─css
@@ -153,8 +169,8 @@ for i in range(len(folders)):
         print(space+target)
         c = get_childs(target)
         # nc = get_childs(folders[i+1].name)
-        space = space + "  "
         for child in c:
             # if target not in last_childs:
             print(space+"└─"+child)
+        space = space + "  "
 
