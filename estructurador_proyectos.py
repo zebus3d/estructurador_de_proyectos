@@ -35,6 +35,60 @@ else:
 # Desde un archivo externo:
 file_json = 'templates/babylon.json'
 
+
+# parents = []
+
+# def readTree(data):
+#     if isinstance(data, dict):
+#         padre = data['name']
+#         if isinstance(data['children'], list): 
+#             if len(data['children']) > 0 :
+#                 for c in data['children']:
+#                     parents.append([padre, c['name']])
+#                     readTree(c)
+#             else:
+#                 parents.append([padre , ""])
+
+# with open(file_json) as json_file:
+#     data = json.load(json_file)
+#     readTree(data)
+
+# for i in parents:
+#     # obviando los directorios vacios:
+#     if len(i[1]) > 0:
+#         print(i)
+
+
+# usando objetos:
+# list of objects folders:
+folders = []
+
+class Folder():
+    def __init__(self, name="", childrens=[]):
+        self._name = name
+        self._childrens = childrens
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def set_name(self, name):
+        if not isinstance(name, str):
+            raise ValueError( 'the name {} is not a string type'.format(name) )
+        self._name = name
+
+    @property
+    def childrens(self):
+        return self._childrens
+
+    @childrens.setter
+    def set_childrens(self, childrens):
+        if not isinstance(childrens, list):
+            raise ValueError( 'the name {} is not a list type'.format(childrens) )
+        self._childrens = childrens
+
+# referencia:
 # root_dir
 #  └──sass
 #  └──preloader
@@ -50,24 +104,30 @@ file_json = 'templates/babylon.json'
 #  ·   └──js2
 #  ·   ·   └──libs2
 
-parents = []
-
-def readTree(data):
-    if isinstance(data, dict):
-        padre = data['name']
-        if isinstance(data['children'], list): 
-            if len(data['children']) > 0 :
-                for c in data['children']:
-                    parents.append([padre, c['name']])
-                    readTree(c)
-            else:
-                parents.append([padre , ""])
+def procesando(data):
+    for key, value in data.items():
+        if isinstance(value, str):
+            # si value es string es un padre:
+            fo = Folder(value, [])
+            folders.append(fo)
+        elif isinstance(value, list):
+            # si es un listado de hijos:
+            if fo in folders:
+                childrens = value
+                for child in childrens:
+                    fo.childrens.append(child['name'])
+                    procesando(child)
 
 with open(file_json) as json_file:
     data = json.load(json_file)
-    readTree(data)
+    # print(data)
+    # readTree(data)
+    procesando(data)
 
-for i in parents:
-    # obviando los directorios vacios:
-    if len(i[1]) > 0:
-        print(i)
+for obj in folders:
+    padre = obj.name
+    hijos = obj.childrens
+    if hijos:
+        print("padre: ", padre, " y sus hijos: ", hijos)
+    else:
+        print("padre: ", padre)
