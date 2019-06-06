@@ -37,30 +37,7 @@ file_json = 'templates/babylon.json'
 # file_json = 'templates/babylon2.json'
 
 
-# parents = []
-
-# def readTree(data):
-#     if isinstance(data, dict):
-#         padre = data['name']
-#         if isinstance(data['children'], list): 
-#             if len(data['children']) > 0 :
-#                 for c in data['children']:
-#                     parents.append([padre, c['name']])
-#                     readTree(c)
-#             else:
-#                 parents.append([padre , ""])
-
-# with open(file_json) as json_file:
-#     data = json.load(json_file)
-#     readTree(data)
-
-# for i in parents:
-#     # obviando los directorios vacios:
-#     if len(i[1]) > 0:
-#         print(i)
-
-
-# usando objetos:
+# Con objetos:
 # list of objects folders:
 folders = []
 
@@ -99,6 +76,35 @@ class Folder():
     def get_childs(self):
         return [child for child in self.childrens]
 
+
+
+# referencia babylon.json:
+# root_dir
+#  └─sass
+#  └─preloader
+#  └─js1
+#  ·  └─libs1
+#  └─resources
+#  ·  └─gui
+#  └─dist
+#  ·  └─css
+#  ·  └─assets
+#  ·  ·  └─agui
+#  ·  ·  ·  └─buttons
+#  ·  └─js2
+#  ·  ·  └─libs2
+
+# referencia babylon2.json:
+# root_dir
+#  └─index.html
+#  └─css
+#  └─js
+#  ·  └─SceneManager.js
+#  ·  └─main.js
+#  ·  └─sceneSubjects
+#  ·  └─libs
+#  ·  ·  └─opt
+#  ·  ·  ·  └─jeje
 
 
 # parseando y dibujando:
@@ -140,31 +146,3 @@ with open(file_json) as json_file:
     procesando(space, data)
 
 # fin parseando
-
-# referencia babylon.json:
-# root_dir
-#  └─sass
-#  └─preloader
-#  └─js1
-#  ·  └─libs1
-#  └─resources
-#  ·  └─gui
-#  └─dist
-#  ·  └─css
-#  ·  └─assets
-#  ·  ·  └─agui
-#  ·  ·  ·  └─buttons
-#  ·  └─js2
-#  ·  ·  └─libs2
-
-# referencia babylon2.json:
-# root_dir
-#  └─index.html
-#  └─css
-#  └─js
-#  ·  └─SceneManager.js
-#  ·  └─main.js
-#  ·  └─sceneSubjects
-#  ·  └─libs
-#  ·  ·  └─opt
-#  ·  ·  ·  └─jeje
