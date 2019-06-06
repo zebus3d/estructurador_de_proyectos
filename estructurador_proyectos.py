@@ -88,6 +88,16 @@ class Folder():
             raise ValueError( 'the name {} is not a list type'.format(childrens) )
         self._childrens = childrens
 
+    # metodos:
+    def have_childs(self):
+        if len(self.childrens) > 0:
+            return True
+        else:
+            return False
+
+    def get_childs(self):
+        return [child for child in self.childrens]
+
 
 # parseando:
 def procesando(data):
@@ -147,31 +157,18 @@ with open(file_json) as json_file:
 name_folders = []
 name_child_folders = []
 
-def have_childs(name):
-    for ob in folders:
-        if ob.name == name:
-            if len(ob.childrens) > 0:
-                return True
-            else:
-                return False
 
-def get_childs(name):
-    if have_childs(name):
-        for ob in folders:
-            if ob.name == name:
-                return [child for child in ob.childrens]
 
-space = ""
 last_childs = []
-for i in range(len(folders)):
-    target = folders[i].name
-    if have_childs(target):
-        print(space+"└─"+target)
-        space = space + "  "
-        c = get_childs(target)
-        # nc = get_childs(folders[i+1].name)
-        for child in c:
-            # if target not in last_childs:
-            if not have_childs(child):
-                print(space+"└─"+child)
-                space = ""
+
+for obj in folders:
+    space = ""
+    target = obj.name
+
+    if obj.have_childs():
+        print(target)
+        space += " "
+        
+        childrens = obj.get_childs()
+        for child in childrens:
+            print(space+"└─"+child)
