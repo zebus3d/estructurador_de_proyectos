@@ -1,0 +1,32 @@
+{
+    "name": "root_dir",
+    "children": [{
+            "name": "index.html",
+            "children": []
+        },{
+            "name": "css",
+            "children": []
+        },{
+            "name": "js",
+            "children": [{
+                    "name": "SceneManager.js",
+                    "children": []
+                },{
+                    "name": "main.js",
+                    "children": []
+                },{
+                    "name": "sceneSubjects",
+                    "children": []
+                },{
+                    "name": "libs",
+                    "children": [{
+                        "name": "opt",
+                        "children": [{
+                            "name": "jeje",
+                            "children": []
+                        }]
+                    }]
+                }]
+        }
+    ]
+}
