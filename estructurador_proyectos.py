@@ -82,26 +82,26 @@ class Folder():
 # root_dir
 #  └─index.html
 #  └─css
-#  ·  └─style.css
+#  ¦  └─style.css
 #  └─sass
-#  ·  └─style.sass
+#  ¦  └─style.sass
 #  └─js
-#  ·  └─libs
+#  ¦  └─libs
 #  └─resources
-#  ·  └─img
-#  ·  └─gui
+#  ¦  └─img
+#  ¦  └─gui
 
 # referencia babylon2.json:
 # root_dir
 #  └─index.html
 #  └─css
 #  └─js
-#  ·  └─SceneManager.js
-#  ·  └─main.js
-#  ·  └─sceneSubjects
-#  ·  └─libs
-#  ·  ·  └─opt
-#  ·  ·  ·  └─jeje
+#  ¦  └─SceneManager.js
+#  ¦  └─main.js
+#  ¦  └─sceneSubjects
+#  ¦  └─libs
+#  ¦  ¦  └─opt
+#  ¦  ¦  ¦  └─jeje
 
 
 # parseando y dibujando:
@@ -119,7 +119,7 @@ def procesando(space, data):
             if padre not in last_childs:
                 print(space+padre)
             else:
-                space += "· "
+                space += "¦ "
             
         elif isinstance(value, list):
             childrens = value
