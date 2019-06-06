@@ -88,22 +88,8 @@ class Folder():
             raise ValueError( 'the name {} is not a list type'.format(childrens) )
         self._childrens = childrens
 
-# referencia:
-# root_dir
-#  └──sass
-#  └──preloader
-#  └──js1
-#  ·   └──libs1
-#  └──resources
-#  ·   └──gui
-#  └──dist
-#  ·   └──css
-#  ·   └──assets
-#  ·   ·   └──agui
-#  ·   ·   ·   └──buttons
-#  ·   └──js2
-#  ·   ·   └──libs2
 
+# parseando:
 def procesando(data):
     for key, value in data.items():
         if isinstance(value, str):
@@ -115,7 +101,9 @@ def procesando(data):
             if fo in folders:
                 childrens = value
                 for child in childrens:
+                    # print(fo.name)
                     fo.childrens.append(child['name'])
+                    # print(" "+"└─"+child['name'])
                     procesando(child)
 
 with open(file_json) as json_file:
@@ -124,10 +112,49 @@ with open(file_json) as json_file:
     # readTree(data)
     procesando(data)
 
-for obj in folders:
-    padre = obj.name
-    hijos = obj.childrens
-    if hijos:
-        print("padre: ", padre, " y sus hijos: ", hijos)
-    else:
-        print("padre: ", padre)
+# fin parseando
+
+# referencia:
+# root_dir
+#   └─index.html
+#   └─css
+#   └─js
+#     └─SceneManager.js
+#     └─main.js
+#     └─sceneSubjects
+#     └─libs
+#       └─opt
+#         └─jeje
+
+
+# lectura:
+name_folders = []
+name_child_folders = []
+
+def have_childs(name):
+    for ob in folders:
+        if ob.name == name:
+            if len(ob.childrens) > 0:
+                return True
+            else:
+                return False
+
+def get_childs(name):
+    if have_childs(name):
+        for ob in folders:
+            if ob.name == name:
+                return [child for child in ob.childrens]
+
+space = ""
+last_childs = []
+for i in range(len(folders)):
+    target = folders[i].name
+    if have_childs(target):
+        print(space+target)
+        c = get_childs(target)
+        # nc = get_childs(folders[i+1].name)
+        space = space + "  "
+        for child in c:
+            # if target not in last_childs:
+            print(space+"└─"+child)
+
