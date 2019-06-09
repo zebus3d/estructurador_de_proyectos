@@ -1,0 +1,34 @@
+{
+    "name": "root_dir",
+    "children": [{
+        "name": "index.html",
+        "children": []
+    }, {
+        "name": "css",
+        "children": [{
+            "name": "style.css",
+            "children": []
+        }]
+    }, {
+        "name": "sass",
+        "children": [{
+            "name": "style.sass",
+            "children": []
+        }]
+    }, {
+        "name": "js",
+        "children": [{
+            "name": "libs",
+            "children": []
+        }]
+    }, {
+        "name": "resources",
+        "children": [{
+            "name": "img",
+            "children": []
+        }, {
+            "name": "gui",
+            "children": []
+        }]
+    }]
+}

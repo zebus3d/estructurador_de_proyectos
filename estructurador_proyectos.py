@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-import os, sys, platform, json
+import os
+import sys
+import platform
+import json
 
 
 '''
@@ -33,13 +36,15 @@ else:
     slash = "/"
 
 # Desde un archivo externo:
-file_json = 'templates/babylon.json'
-# file_json = 'templates/babylon2.json'
+file_json = 'templates/test1.json'
+# file_json = 'templates/babylon.json'
+# # file_json = 'templates/babylon2.json'
 
 
 # Con objetos:
 # list of objects folders:
 folders = []
+
 
 class Folder():
     def __init__(self, name="", childrens=[]):
@@ -53,7 +58,7 @@ class Folder():
     @name.setter
     def set_name(self, name):
         if not isinstance(name, str):
-            raise ValueError( 'the name {} is not a string type'.format(name) )
+            raise ValueError('the name {} is not a string type'.format(name))
         self._name = name
 
     @property
@@ -63,7 +68,8 @@ class Folder():
     @childrens.setter
     def set_childrens(self, childrens):
         if not isinstance(childrens, list):
-            raise ValueError( 'the name {} is not a list type'.format(childrens) )
+            raise ValueError(
+                'the name {} is not a list type'.format(childrens))
         self._childrens = childrens
 
     # metodos:
@@ -77,8 +83,7 @@ class Folder():
         return [child for child in self.childrens]
 
 
-
-# referencia babylon.json:
+# referencia test1.json:
 # root_dir
 #  └─index.html
 #  └─css
@@ -91,7 +96,7 @@ class Folder():
 #  ¦  └─img
 #  ¦  └─gui
 
-# referencia babylon2.json:
+# referencia test2.json:
 # root_dir
 #  └─index.html
 #  └─css
@@ -103,10 +108,11 @@ class Folder():
 #  ¦  ¦  └─opt
 #  ¦  ¦  ¦  └─jeje
 
-
 # parseando y dibujando:
 last_childs = []
 space = ""
+
+
 def procesando(space, data):
     for key, value in data.items():
         if isinstance(value, str):
@@ -120,7 +126,7 @@ def procesando(space, data):
                 print(space+padre)
             else:
                 space += "¦ "
-            
+
         elif isinstance(value, list):
             childrens = value
             space += " "
@@ -133,7 +139,6 @@ def procesando(space, data):
                 procesando(space, child)
 
             space = ""
-
 
 
 with open(file_json) as json_file:
